@@ -23,7 +23,7 @@ elInputTxt.addEventListener("keyup", checkData);
 
 function addItem() {
     let input = elInputTxt.value;
-    let makeNewEl = document.createElement("p");
+    let makeNewEl = document.createElement("article");
     let makeTextNode = document.createTextNode(input);
     makeNewEl.appendChild(makeTextNode);
     makeNewEl.className =  "Todo";
