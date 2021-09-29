@@ -90,8 +90,26 @@ pile2100 - 28/09/2021
                 makeNewEl.appendChild(makeTextNode);
                 makeNewEl.className =  "Todo";
                 elMakeTodoList.appendChild(makeNewEl);
+
+            
+
+                makeNewEl.addEventListener("click", function(e) {
+
+                    e.target.remove();
+                    storeTodoList();
+    
+                });
+
+              
+
+
                 }
+
+
+
             }
+            
+
        }
 
     //    Delete all in localStorage  
