@@ -63,11 +63,48 @@ pile2100 - 28/09/2021
             elInputTxt.value = "";
             elSubmotBtn.disabled = true;
 
+            // using this function to remove someone item if you are creating new
+                    // item and havent stored yet so this function will do
+
+            makeNewEl.addEventListener("click", function(killItem) {
+    
+                killItem.target.remove();
+                storeTodoList();
+
+            });
+
             //    Anropa loadData function and save in localstorage!
 
             storeTodoList();
 
         }
+
+
+           // Retrieve data from localstorage
+           function loadData() {
+            loadTodoList = JSON.parse(localStorage.getItem("loadTodoList"));
+                // Checking length if null or not 
+                if (loadTodoList != null) {
+                    for(i=0;i<loadTodoList.length;i++) {
+                    let makeNewEl = document.createElement("article");
+                    let makeTextNode = document.createTextNode(loadTodoList[i]);
+                    makeNewEl.appendChild(makeTextNode);
+                    makeNewEl.className =  "Todo";
+                    elMakeTodoList.appendChild(makeNewEl);
+
+                    // Remove someone item from them in the list and store localstorage
+                    
+                    makeNewEl.addEventListener("click", function(killItem) {
+                        killItem.target.remove();
+                        storeTodoList();
+        
+                    });
+                   
+    
+                }
+    
+                }
+            }
 
            // Store to localstorage
         function storeTodoList(){
@@ -79,38 +116,9 @@ pile2100 - 28/09/2021
             }
             localStorage.setItem("loadTodoList", JSON.stringify(createTodoArray));
         }
-        // Retrieve data from localstorage
-        function loadData() {
-        loadTodoList = JSON.parse(localStorage.getItem("loadTodoList"));
-            // Checking length if null or not 
-            if (loadTodoList != null) {
-                for(i=0;i<loadTodoList.length;i++) {
-                let makeNewEl = document.createElement("article");
-                let makeTextNode = document.createTextNode(loadTodoList[i]);
-                makeNewEl.appendChild(makeTextNode);
-                makeNewEl.className =  "Todo";
-                elMakeTodoList.appendChild(makeNewEl);
-
-            
-
-                makeNewEl.addEventListener("click", function(e) {
-
-                    e.target.remove();
-                    storeTodoList();
     
-                });
+     
 
-              
-
-
-                }
-
-
-
-            }
-            
-
-       }
 
     //    Delete all in localStorage  
 
@@ -121,10 +129,9 @@ pile2100 - 28/09/2021
             loadData();
             deleteItem();
         }
+
     // Delete all article list with event elMakeTodoList 
     function deleteItem(){
         // Delete all item in the list away
         elMakeTodoList.innerHTML = "";
-
     }
-
